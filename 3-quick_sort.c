@@ -3,9 +3,12 @@
 /**
  * qs - qs
  * @array: array
+ * @limite_left: left limit
+ * @limite_right: right llimit
+ * @size: size of array
  */
 
-void qs(int *array, int limite_left, int limite_right)
+void qs(int *array, int limite_left, int limite_right, size_t size)
 {
 	int left, right, temporal, pivot;
 
@@ -25,16 +28,17 @@ void qs(int *array, int limite_left, int limite_right)
 			temporal = array[left];
 			array[left] = array[right];
 			array[right] = temporal;
+			print_array(array, size);
 			left++;
 			right--;
 		}
 	}
 
 	if (limite_left < right)
-		qs(array, limite_left, right);
+		qs(array, limite_left, right, size);
 
 	if (limite_right > left)
-		qs(array, left, limite_right);
+		qs(array, left, limite_right, size);
 }
 
 /**
@@ -44,6 +48,9 @@ void qs(int *array, int limite_left, int limite_right)
  */
 void quick_sort(int *array, size_t size)
 {
-	qs(array, 0, size - 1);
+	if (array == NULL || size == 0)
+		return;
+
+	qs(array, 0, size - 1, size);
 }
 
