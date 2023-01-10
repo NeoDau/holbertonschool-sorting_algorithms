@@ -28,7 +28,8 @@ void qs(int *array, int limite_left, int limite_right, size_t size)
 			temporal = array[left];
 			array[left] = array[right];
 			array[right] = temporal;
-			print_array(array, size);
+			if (array[left] != array[right])
+				print_array(array, size);
 			left++;
 			right--;
 		}
